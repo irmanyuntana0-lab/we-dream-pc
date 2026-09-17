@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F8C8C">
+<meta name="mobile-web-app-capable" content="yes">
+<title>PC Impian Kita Berdua</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F7F7;
+  --bg2:#E6F0F2;
+  --surface:#FFFFFF;
+  --surface-2:#F6FAFA;
+  --border:#D8E6E8;
+  --text:#0D2B2E;
+  --muted:#5C7B80;
+  --green:#0E9F6E;
+  --green-soft:#D6F3E6;
+  --blue:#0B7FC4;
+  --blue-soft:#D7ECFA;
+  --teal:#0F8C8C;
+  --warn:#B2650B;
+  --warn-soft:#FBEBD2;
+  --shadow:0 1px 2px rgba(13,43,46,.06), 0 8px 24px rgba(13,43,46,.06);
+  --shadow-lg:0 2px 4px rgba(13,43,46,.08), 0 18px 48px rgba(13,43,46,.10);
+  --radius:18px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#06161C;
+    --bg2:#08202A;
+    --surface:#0D242D;
+    --surface-2:#102B35;
+    --border:#1C3C48;
+    --text:#E4F3F4;
+    --muted:#88A9B1;
+    --green:#2FD39A;
+    --green-soft:#0E3B32;
+    --blue:#43B3F0;
+    --blue-soft:#0B3348;
+    --teal:#2BBFBF;
+    --warn:#E8A84C;
+    --warn-soft:#3A2C12;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    --shadow-lg:0 2px 4px rgba(0,0,0,.45), 0 18px 48px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#06161C; --bg2:#08202A; --surface:#0D242D; --surface-2:#102B35;
+  --border:#1C3C48; --text:#E4F3F4; --muted:#88A9B1;
+  --green:#2FD39A; --green-soft:#0E3B32; --blue:#43B3F0; --blue-soft:#0B3348;
+  --teal:#2BBFBF; --warn:#E8A84C; --warn-soft:#3A2C12;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  --shadow-lg:0 2px 4px rgba(0,0,0,.45), 0 18px 48px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--bg);
+  background-image:radial-gradient(1200px 600px at 12% -8%, var(--bg2), transparent 60%),
+                   radial-gradient(900px 500px at 92% 0%, var(--bg2), transparent 55%);
+  color:var(--text);
+  font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:22px 18px 80px;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  border-radius:26px;
+  padding:30px 28px;
+  background:linear-gradient(135deg,#065F46 0%, #0F8C8C 45%, #0B5FA5 100%);
+  color:#EAFBF6;
+  box-shadow:var(--shadow-lg);
+}
+.hero::after{
+  content:"";position:absolute;inset:auto -60px -120px auto;
+  width:340px;height:340px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.18),transparent 65%);
+  pointer-events:none;
+}
+.hero-top{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;position:relative;z-index:1;}
+.hero h1{
+  font-family:"Outfit",var(--fallback),sans-serif;
+  font-weight:800;font-size:clamp(26px,4.6vw,40px);
+  margin:0 0 6px;letter-spacing:-.02em;line-height:1.12;
+}
+.hero p{margin:0;color:rgba(234,251,246,.82);max-width:46ch;font-size:15px;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.2);
+  padding:5px 12px;border-radius:999px;margin-bottom:14px;
+}
+.ring-box{display:flex;align-items:center;gap:16px;}
+.ring{position:relative;width:118px;height:118px;flex-shrink:0;}
+.ring svg{transform:rotate(-90deg);display:block;}
+.ring-val{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;line-height:1;
+}
+.ring-val b{font-family:"Outfit",sans-serif;font-size:27px;font-weight:800;}
+.ring-val span{font-size:10.5px;opacity:.78;margin-top:3px;letter-spacing:.06em;}
+
+/* ---------- STAT CARDS ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin-top:20px;}
+.stat{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:17px 19px;box-shadow:var(--shadow);
+}
+.stat .lbl{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.03em;}
+.dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.stat .num{font-family:"Outfit",sans-serif;font-size:25px;font-weight:800;letter-spacing:-.02em;margin-top:7px;line-height:1.15;}
+.stat .sub{font-size:12.5px;color:var(--muted);margin-top:3px;}
+
+/* ---------- SECTIONS ---------- */
+section{margin-top:34px;}
+.sec-head{display:flex;align-items:center;gap:11px;margin-bottom:14px;}
+.sec-icon{
+  width:34px;height:34px;border-radius:11px;display:grid;place-items:center;
+  font-size:16px;background:var(--green-soft);flex-shrink:0;
+}
+.sec-icon.b{background:var(--blue-soft);}
+.sec-head h2{
+  font-family:"Outfit",sans-serif;font-size:21px;font-weight:700;
+  margin:0;letter-spacing:-.01em;
+}
+.sec-head .hint{font-size:12.5px;color:var(--muted);margin-left:auto;text-align:right;}
+
+/* ---------- SAVINGS PLANNER ---------- */
+.planner{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:minmax(210px,1fr) 1.3fr;gap:22px;align-items:center;
+}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:7px;}
+.money-in{display:flex;align-items:center;gap:0;border:1.5px solid var(--border);border-radius:12px;background:var(--surface-2);overflow:hidden;transition:border-color .15s;}
+.money-in:focus-within{border-color:var(--green);}
+.money-in .pre{padding:0 11px;font-weight:700;color:var(--muted);font-size:14px;}
+.money-in input{
+  flex:1;min-width:0;border:0;background:transparent;color:var(--text);
+  font-family:"Outfit",sans-serif;font-size:19px;font-weight:700;padding:11px 12px 11px 0;outline:none;
+}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;}
+.chip{
+  border:1px solid var(--border);background:var(--surface-2);color:var(--muted);
+  border-radius:999px;padding:5px 11px;font-size:12px;font-weight:600;cursor:pointer;
+  font-family:inherit;transition:.15s;
+}
+.chip:hover{border-color:var(--green);color:var(--green);}
+.result{
+  background:linear-gradient(135deg,var(--green-soft),var(--blue-soft));
+  border-radius:14px;padding:18px 20px;
+}
+.result .big{font-family:"Outfit",sans-serif;font-size:31px;font-weight:800;line-height:1.1;letter-spacing:-.02em;}
+.result .cap{font-size:12.5px;color:var(--muted);font-weight:600;margin-bottom:4px;}
+.result .tgl{font-size:13.5px;margin-top:8px;color:var(--text);}
+.result .tgl b{color:var(--blue);}
+
+/* ---------- COMPONENT LIST ---------- */
+.items{display:flex;flex-direction:column;gap:11px;}
+.item{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:15px 17px;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;
+  transition:border-color .18s, transform .12s, opacity .18s;
+}
+.item:hover{border-color:var(--teal);}
+.item.done{opacity:.62;}
+.item.done .nm{text-decoration:line-through;text-decoration-color:var(--muted);}
+.cbx{
+  appearance:none;-webkit-appearance:none;margin:2px 0 0;
+  width:24px;height:24px;border-radius:8px;border:2px solid var(--border);
+  background:var(--surface-2);cursor:pointer;flex-shrink:0;position:relative;transition:.15s;
+}
+.cbx:hover{border-color:var(--green);}
+.cbx:checked{background:var(--green);border-color:var(--green);}
+.cbx:checked::after{
+  content:"";position:absolute;left:7px;top:3px;width:5px;height:10px;
+  border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(43deg);
+}
+.meta{min-width:0;}
+.nm-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;}
+.nm{font-family:"Outfit",sans-serif;font-weight:700;font-size:16.5px;letter-spacing:-.01em;}
+.kat{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);}
+.badge{
+  font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+  padding:3px 9px;border-radius:999px;background:var(--blue-soft);color:var(--blue);
+}
+.badge.core{background:var(--green-soft);color:var(--green);}
+.badge.nice{background:var(--warn-soft);color:var(--warn);}
+.tip{font-size:13px;color:var(--muted);margin-top:6px;display:flex;gap:7px;align-items:flex-start;}
+.tip i{font-style:normal;flex-shrink:0;}
+.price{text-align:right;flex-shrink:0;min-width:152px;}
+.price .est{font-family:"Outfit",sans-serif;font-weight:700;font-size:14.5px;white-space:nowrap;}
+.price .est small{font-weight:500;color:var(--muted);font-size:11.5px;display:block;letter-spacing:.04em;}
+.real{
+  margin-top:8px;width:152px;text-align:right;
+  border:1.5px solid var(--border);border-radius:10px;background:var(--surface-2);
+  color:var(--text);font-family:"Outfit",sans-serif;font-weight:700;font-size:13.5px;
+  padding:7px 10px;outline:none;transition:border-color .15s;
+}
+.real::placeholder{color:var(--muted);font-weight:500;font-family:"Inter",sans-serif;font-size:12px;}
+.real:focus{border-color:var(--blue);}
+
+/* ---------- ORDER TIMELINE ---------- */
+.timeline{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px 22px;box-shadow:var(--shadow);
+}
+.step{display:grid;grid-template-columns:auto 1fr;gap:14px;padding-bottom:16px;position:relative;}
+.step:last-child{padding-bottom:0;}
+.step::before{
+  content:"";position:absolute;left:14px;top:30px;bottom:0;width:2px;
+  background:linear-gradient(var(--green),var(--blue));opacity:.28;
+}
+.step:last-child::before{display:none;}
+.step-n{
+  width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+  font-family:"Outfit",sans-serif;font-weight:800;font-size:13px;
+  background:linear-gradient(135deg,var(--green),var(--blue));color:#fff;flex-shrink:0;z-index:1;
+}
+.step h4{margin:3px 0 3px;font-family:"Outfit",sans-serif;font-size:15.5px;font-weight:700;}
+.step p{margin:0;font-size:13.5px;color:var(--muted);}
+
+/* ---------- NOTES GRID ---------- */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:14px;}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:19px;box-shadow:var(--shadow);
+}
+.card h3{
+  font-family:"Outfit",sans-serif;font-size:16px;font-weight:700;margin:0 0 11px;
+  display:flex;align-items:center;gap:9px;
+}
+.card h3 .em{
+  width:30px;height:30px;border-radius:10px;display:grid;place-items:center;
+  background:var(--blue-soft);font-size:15px;flex-shrink:0;
+}
+.card h3 .em.g{background:var(--green-soft);}
+.card ul{margin:0;padding-left:0;list-style:none;}
+.card li{
+  font-size:13.5px;color:var(--muted);padding:7px 0 7px 22px;position:relative;
+  border-top:1px solid var(--border);
+}
+.card li:first-child{border-top:0;padding-top:0;}
+.card li::before{
+  content:"";position:absolute;left:6px;top:15px;width:6px;height:6px;
+  border-radius:50%;background:var(--teal);
+}
+.card li:first-child::before{top:8px;}
+.card li b{color:var(--text);font-weight:600;}
+
+/* ---------- REMINDER CHECKLIST ---------- */
+.rem{display:flex;flex-direction:column;gap:2px;}
+.rem label{
+  display:flex;align-items:center;gap:11px;padding:9px 2px;cursor:pointer;
+  font-size:13.5px;border-top:1px solid var(--border);
+}
+.rem label:first-child{border-top:0;}
+.rem input{
+  appearance:none;-webkit-appearance:none;width:19px;height:19px;border-radius:6px;
+  border:2px solid var(--border);background:var(--surface-2);cursor:pointer;
+  flex-shrink:0;position:relative;transition:.15s;margin:0;
+}
+.rem input:checked{background:var(--blue);border-color:var(--blue);}
+.rem input:checked::after{
+  content:"";position:absolute;left:5px;top:1.5px;width:4px;height:8px;
+  border:solid #fff;border-width:0 2.2px 2.2px 0;transform:rotate(43deg);
+}
+.rem input:checked + span{text-decoration:line-through;color:var(--muted);}
+
+/* ---------- FOOTER ---------- */
+.foot{
+  margin-top:34px;display:flex;flex-wrap:wrap;gap:12px;
+  align-items:center;justify-content:space-between;
+  font-size:12.5px;color:var(--muted);
+}
+.btn{
+  border:1px solid var(--border);background:var(--surface);color:var(--muted);
+  border-radius:11px;padding:9px 16px;font-size:13px;font-weight:600;
+  cursor:pointer;font-family:inherit;transition:.15s;
+}
+.btn:hover{border-color:var(--warn);color:var(--warn);}
+.btn.primary{
+  background:linear-gradient(135deg,var(--green),var(--blue));
+  border-color:transparent;color:#fff;
+}
+.btn.primary:hover{border-color:transparent;color:#fff;filter:brightness(1.07);}
+.sync{display:inline-flex;align-items:center;gap:7px;}
+.sync .dot{width:7px;height:7px;background:var(--green);}
+
+@media (max-width:760px){
+  .hero{padding:24px 20px;}
+  .hero-top{flex-direction:column;align-items:flex-start;}
+  .planner{grid-template-columns:1fr;gap:16px;}
+  .item{grid-template-columns:auto 1fr;}
+  .price{grid-column:2;text-align:left;margin-top:4px;}
+  .real{width:100%;text-align:left;}
+  .price .est small{display:inline;margin-left:6px;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-top">
+      <div>
+        <div class="eyebrow">Proyek Rakitan Berdua</div>
+        <h1>PC Impian Kita Berdua</h1>
+        <p>Checklist, budget, dan rencana nabung buat rakitan Ryzen 5 5500 + RX 580. Centang tiap komponen yang udah kebeli — sisanya kehitung otomatis.</p>
+      </div>
+      <div class="ring-box">
+        <div class="ring">
+          <svg width="118" height="118" viewBox="0 0 118 118">
+            <circle cx="59" cy="59" r="50" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="11"/>
+            <circle id="ringArc" cx="59" cy="59" r="50" fill="none" stroke="#ffffff" stroke-width="11"
+                    stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16"
+                    style="transition:stroke-dashoffset .5s ease"/>
+          </svg>
+          <div class="ring-val"><b id="ringPct">0%</b><span id="ringCnt">0 / 8</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="lbl"><span class="dot" style="background:var(--teal)"></span>Total Estimasi</div>
+      <div class="num" id="sTotal">—</div>
+      <div class="sub">8 item, termasuk monitor</div>
+    </div>
+    <div class="stat">
+      <div class="lbl"><span class="dot" style="background:var(--green)"></span>Sudah Dibeli</div>
+      <div class="num" id="sSpent">—</div>
+      <div class="sub" id="sSpentSub">Belum ada yang dicentang</div>
+    </div>
+    <div class="stat">
+      <div class="lbl"><span class="dot" style="background:var(--blue)"></span>Sisa Perlu Dikumpulkan</div>
+      <div class="num" id="sLeft">—</div>
+      <div class="sub" id="sLeftSub">—</div>
+    </div>
+    <div class="stat">
+      <div class="lbl"><span class="dot" style="background:var(--warn)"></span>Item Tersisa</div>
+      <div class="num" id="sCount">—</div>
+      <div class="sub" id="sCountSub">—</div>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-icon">💰</div>
+      <h2>Rencana Nabung</h2>
+      <div class="hint">Isi berapa yang bisa disisihkan tiap bulan</div>
+    </div>
+    <div class="planner">
+      <div class="field">
+        <label for="tabungan">Nabung per bulan (berdua)</label>
+        <div class="money-in">
+          <span class="pre">Rp</span>
+          <input type="text" id="tabungan" inputmode="numeric" value="500.000">
+        </div>
+        <div class="chips">
+          <button class="chip" data-amt="300000">300 rb</button>
+          <button class="chip" data-amt="500000">500 rb</button>
+          <button class="chip" data-amt="750000">750 rb</button>
+          <button class="chip" data-amt="1000000">1 jt</button>
+          <button class="chip" data-amt="1500000">1,5 jt</button>
+        </div>
+      </div>
+      <div class="result">
+        <div class="cap">Perkiraan waktu sampai rakitan selesai</div>
+        <div class="big" id="pBulan">—</div>
+        <div class="tgl" id="pTgl">—</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-icon b">🧩</div>
+      <h2>Checklist Komponen</h2>
+      <div class="hint">Isi harga aslinya biar totalnya akurat</div>
+    </div>
+    <div class="items" id="items"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-icon">🛒</div>
+      <h2>Urutan Beli yang Disarankan</h2>
+      <div class="hint">Kalau beli nyicil, ikutin urutan ini</div>
+    </div>
+    <div class="timeline">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div><h4>Motherboard + Prosesor (barengan)</h4>
+        <p>Beli bareng di toko yang sama biar bisa minta cek/update BIOS di tempat. B450 lawas belum tentu langsung kenal Ryzen 5000.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div><h4>PSU 550W 80+ Bronze</h4>
+        <p>Jangan ditunda dan jangan dimurahin. PSU jelek yang rusak bisa nyeret mobo, CPU, dan GPU sekalian.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div><h4>RAM 16GB + SSD NVMe</h4>
+        <p>Harga dua ini paling fluktuatif. Kalau lagi ada diskon, samber duluan walau urutannya belum sampai sini.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <div><h4>Casing</h4>
+        <p>Paling gampang dicari dan paling nggak berpengaruh ke performa. Aman ditaruh belakangan.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">5</div>
+        <div><h4>RX 580 8GB</h4>
+        <p>Item paling mahal kedua. Kalau beli bekas, minta tes dulu di tempat — jangan mau yang "no tes no return".</p></div>
+      </div>
+      <div class="step">
+        <div class="step-n">6</div>
+        <div><h4>Monitor</h4>
+        <p>Paling akhir karena bisa numpang TV/monitor lama dulu buat instalasi pertama.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-icon b">⚠️</div>
+      <h2>Yang Wajib Dicek Sebelum Bayar</h2>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3><span class="em g">🔌</span>Kompatibilitas</h3>
+        <ul>
+          <li><b>Ryzen 5 5500 nggak punya iGPU.</b> Tanpa VGA terpasang, PC nyala tapi monitor gelap. Jadi GPU nggak bisa ditunda kalau mau tes rakitan.</li>
+          <li><b>B450M butuh BIOS Ryzen 5000.</b> Cari box berlabel "Ryzen 5000 Ready" atau minta toko update-in.</li>
+          <li><b>RX 580 butuh daya 8-pin</b> (kadang 6+2 atau dua konektor). Pastikan PSU punya kabelnya, bukan cuma adaptor molex.</li>
+          <li><b>RAM ambil kit 2x8GB</b>, bukan 1x16GB. Dual channel naikin FPS lumayan di GPU kelas ini.</li>
+          <li><b>Cek slot M.2 NVMe</b> di mobonya — beberapa B450M murah slotnya cuma SATA M.2.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="em">🖥️</span>Soal Monitor Rp1,9 jt</h3>
+        <ul>
+          <li>Di harga segitu incar <b>24" IPS, 1080p, 144–180Hz</b>. Itu titik paling pas buat RX 580.</li>
+          <li><b>Hindari 1440p</b> di budget ini — RX 580 bakal ngos-ngosan dan monitornya jadi mubazir.</li>
+          <li>Pastikan ada port <b>DisplayPort</b>. RX 580 keluar 144Hz paling enak lewat DP, bukan HDMI.</li>
+          <li>Panel <b>IPS</b> > VA > TN kalau kalian juga nonton atau ngedit, bukan cuma main game.</li>
+          <li>Cek garansi resmi Indonesia dan kebijakan <b>dead pixel</b>-nya sebelum bayar.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="em g">💡</span>Cara Hemat</h3>
+        <ul>
+          <li><b>RX 580 bekas</b> bisa dapat 1,2–1,5 jt. Tapi wajib tes render/game minimal 15 menit di tempat.</li>
+          <li><b>Cooler bawaan Ryzen 5 5500 udah cukup</b> — nggak perlu beli aftermarket dulu, hemat 200–400 rb.</li>
+          <li><b>Thermal paste udah nempel</b> di cooler bawaan. Nggak usah beli terpisah.</li>
+          <li>Pantau <b>Harbolnas / tanggal kembar</b> buat SSD, RAM, dan casing — diskonnya paling kerasa di situ.</li>
+          <li>Kalau budget mepet, <b>monitor bisa nyusul</b> bulan depan. Sementara colok ke TV pakai HDMI.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="em">📦</span>Jangan Sampai Lupa</h3>
+        <div class="rem" id="reminders"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="sec-icon">🤝</div>
+      <h2>Samakan Progress Berdua</h2>
+    </div>
+    <div class="card">
+      <p style="margin:0 0 14px;font-size:13.5px;color:var(--muted);">
+        Centangan tersimpan di HP/laptop masing-masing. Kalau kamu baru beli sesuatu dan mau
+        HP pasanganmu ikut terupdate, salin link progress di bawah lalu kirim via WhatsApp —
+        dia tinggal buka, dan centangannya langsung ikut.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:9px;">
+        <button class="btn primary" id="shareBtn">📋 Salin link progress</button>
+        <button class="btn" id="resetBtn">Reset semua centang</button>
+      </div>
+      <div id="shareMsg" style="font-size:13px;color:var(--green);margin-top:11px;display:none;font-weight:600;"></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <span class="sync" id="syncMsg"><span class="dot"></span>Progress tersimpan otomatis di perangkat ini</span>
+  </div>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var KOMPONEN = [
+    {id:"cpu", nama:"Ryzen 5 5500", kat:"Prosesor", min:1700000, max:1700000, tag:"core", tagTxt:"Inti",
+     tip:"6 core / 12 thread. Ingat: nggak ada grafis bawaan, jadi VGA wajib nemenin."},
+    {id:"gpu", nama:"RX 580 8GB", kat:"Kartu Grafis", min:1500000, max:2000000, tag:"core", tagTxt:"Inti",
+     tip:"VRAM 8GB bikin dia masih kuat di 1080p. Butuh konektor PSU 8-pin."},
+    {id:"mobo", nama:"Motherboard B450M", kat:"Mainboard", min:900000, max:1100000, tag:"core", tagTxt:"Inti",
+     tip:"Pastikan BIOS-nya sudah support Ryzen seri 5000 sebelum dibawa pulang."},
+    {id:"ram", nama:"RAM 16GB DDR4 3200", kat:"Memori", min:750000, max:1000000, tag:"core", tagTxt:"Inti",
+     tip:"Ambil kit 2 keping 8GB. Aktifkan profil XMP/DOCP di BIOS biar jalan 3200MHz."},
+    {id:"ssd", nama:"SSD NVMe 500GB", kat:"Penyimpanan", min:500000, max:700000, tag:"", tagTxt:"Penting",
+     tip:"Cukup buat Windows + 3–4 game besar. Bisa tambah HDD nanti kalau kurang."},
+    {id:"psu", nama:"PSU 550W 80+ Bronze", kat:"Power Supply", min:450000, max:700000, tag:"core", tagTxt:"Inti",
+     tip:"Jangan pilih merek abal-abal. Ini satu-satunya komponen yang kalau rusak bisa nyeret yang lain."},
+    {id:"casing", nama:"Casing Mid Tower", kat:"Casing", min:300000, max:500000, tag:"", tagTxt:"Penting",
+     tip:"Cari yang panel depannya mesh dan udah bawa minimal 2 fan biar adem."},
+    {id:"monitor", nama:"Monitor 24\" 1080p", kat:"Display", min:1900000, max:1900000, tag:"nice", tagTxt:"Tambahan",
+     tip:"Target 144Hz IPS dengan port DisplayPort. Bisa nyusul belakangan kalau budget mepet."}
+  ];
+
+  var REMINDERS = [
+    "Kabel power PSU (biasanya udah sepaket)",
+    "Kabel DisplayPort buat monitor 144Hz",
+    "Obeng plus magnetik",
+    "Flashdisk 8GB+ buat installer Windows/Linux",
+    "Lisensi Windows atau siap pakai Linux",
+    "Stop kontak / stabilizer yang layak",
+    "Keyboard & mouse (kalau belum punya)"
+  ];
+
+  var TOTAL = KOMPONEN.length;
+  var state = { checked:{}, harga:{}, tabungan:500000, rem:{} };
+  var saveTimer = null;
+
+  var fmt = new Intl.NumberFormat("id-ID");
+  function rp(n){ return "Rp" + fmt.format(Math.round(n)); }
+  function ringkas(n){
+    if(n >= 1000000){
+      var jt = n/1000000;
+      return "Rp" + (jt >= 10 ? jt.toFixed(1) : jt.toFixed(2)).replace(/\.?0+$/,"").replace(".",",") + " jt";
+    }
+    if(n >= 1000) return "Rp" + Math.round(n/1000) + " rb";
+    return "Rp" + fmt.format(n);
+  }
+  function parseNum(s){ var d = String(s).replace(/[^0-9]/g,""); return d ? parseInt(d,10) : 0; }
+
+  /* ---------- BUILD DOM ---------- */
+  var itemsEl = document.getElementById("items");
+  KOMPONEN.forEach(function(k){
+    var row = document.createElement("div");
+    row.className = "item";
+    row.setAttribute("data-id", k.id);
+    var rangeTxt = (k.min === k.max) ? ringkas(k.min) : ringkas(k.min) + " – " + ringkas(k.max);
+    row.innerHTML =
+      '<input type="checkbox" class="cbx" aria-label="Tandai ' + k.nama + ' sudah dibeli">' +
+      '<div class="meta">' +
+        '<div class="nm-row"><span class="nm"></span>' +
+        '<span class="badge ' + k.tag + '">' + k.tagTxt + '</span></div>' +
+        '<div class="kat">' + k.kat + '</div>' +
+        '<div class="tip"><i>💬</i><span></span></div>' +
+      '</div>' +
+      '<div class="price">' +
+        '<div class="est">' + rangeTxt + '<small>Perkiraan pasar</small></div>' +
+        '<input type="text" class="real" inputmode="numeric" placeholder="Harga aslinya?">' +
+      '</div>';
+    row.querySelector(".nm").textContent = k.nama;
+    row.querySelector(".tip span").textContent = k.tip;
+
+    row.querySelector(".cbx").addEventListener("change", function(e){
+      state.checked[k.id] = e.target.checked;
+      render(); save();
+    });
+    var realIn = row.querySelector(".real");
+    realIn.addEventListener("input", function(e){
+      var v = parseNum(e.target.value);
+      e.target.value = v ? fmt.format(v) : "";
+      state.harga[k.id] = v || null;
+      render(); save();
+    });
+    itemsEl.appendChild(row);
+  });
+
+  var remEl = document.getElementById("reminders");
+  REMINDERS.forEach(function(txt, i){
+    var lbl = document.createElement("label");
+    var cb = document.createElement("input");
+    cb.type = "checkbox";
+    var sp = document.createElement("span");
+    sp.textContent = txt;
+    lbl.appendChild(cb); lbl.appendChild(sp);
+    cb.addEventListener("change", function(){
+      state.rem["r"+i] = cb.checked; save();
+    });
+    lbl.setAttribute("data-i", i);
+    remEl.appendChild(lbl);
+  });
+
+  /* ---------- RENDER ---------- */
+  function hitung(){
+    var spent=0, sisaMin=0, sisaMax=0, done=0;
+    KOMPONEN.forEach(function(k){
+      if(state.checked[k.id]){
+        done++;
+        spent += state.harga[k.id] || Math.round((k.min+k.max)/2);
+      } else {
+        sisaMin += k.min; sisaMax += k.max;
+      }
+    });
+    var totMin=0, totMax=0;
+    KOMPONEN.forEach(function(k){ totMin+=k.min; totMax+=k.max; });
+    return {spent:spent, sisaMin:sisaMin, sisaMax:sisaMax, done:done, totMin:totMin, totMax:totMax};
+  }
+
+  function render(){
+    var h = hitung();
+    var pct = Math.round(h.done / TOTAL * 100);
+
+    var C = 2 * Math.PI * 50;
+    document.getElementById("ringArc").setAttribute("stroke-dashoffset", C - (C * pct / 100));
+    document.getElementById("ringPct").textContent = pct + "%";
+    document.getElementById("ringCnt").textContent = h.done + " / " + TOTAL + " kebeli";
+
+    document.getElementById("sTotal").textContent = ringkas(h.totMin) + " – " + ringkas(h.totMax);
+    document.getElementById("sSpent").textContent = h.done ? rp(h.spent) : "Rp0";
+    document.getElementById("sSpentSub").textContent = h.done
+      ? h.done + " item sudah di tangan"
+      : "Belum ada yang dicentang";
+
+    if(h.done === TOTAL){
+      document.getElementById("sLeft").textContent = "Selesai! 🎉";
+      document.getElementById("sLeftSub").textContent = "Semua komponen sudah lengkap";
+      document.getElementById("sCount").textContent = "0";
+      document.getElementById("sCountSub").textContent = "Tinggal dirakit dan dinikmati";
+    } else {
+      document.getElementById("sLeft").textContent = ringkas(h.sisaMin) + " – " + ringkas(h.sisaMax);
+      document.getElementById("sLeftSub").textContent = "Buat " + (TOTAL - h.done) + " item yang belum kebeli";
+      document.getElementById("sCount").textContent = (TOTAL - h.done) + " item";
+      var next = KOMPONEN.filter(function(k){ return !state.checked[k.id]; })[0];
+      document.getElementById("sCountSub").textContent = next ? "Berikutnya: " + next.nama : "—";
+    }
+
+    // Sinkronkan kontrol
+    KOMPONEN.forEach(function(k){
+      var row = itemsEl.querySelector('[data-id="' + k.id + '"]');
+      var on = !!state.checked[k.id];
+      row.classList.toggle("done", on);
+      var cb = row.querySelector(".cbx");
+      if(cb.checked !== on) cb.checked = on;
+      var ri = row.querySelector(".real");
+      if(document.activeElement !== ri){
+        ri.value = state.harga[k.id] ? fmt.format(state.harga[k.id]) : "";
+      }
+    });
+    REMINDERS.forEach(function(_, i){
+      var cb = remEl.querySelector('[data-i="' + i + '"] input');
+      var on = !!state.rem["r"+i];
+      if(cb.checked !== on) cb.checked = on;
+    });
+
+    renderPlanner(h);
+  }
+
+  function renderPlanner(h){
+    var bulanEl = document.getElementById("pBulan");
+    var tglEl = document.getElementById("pTgl");
+
+    if(h.done === TOTAL){
+      bulanEl.textContent = "Lunas 🎉";
+      tglEl.textContent = "Rakitan kalian udah lengkap. Selamat!";
+      return;
+    }
+    var tab = state.tabungan;
+    if(!tab || tab < 1000){
+      bulanEl.textContent = "—";
+      tglEl.textContent = "Isi dulu nominal tabungan bulanannya.";
+      return;
+    }
+    var mid = (h.sisaMin + h.sisaMax) / 2;
+    var bMin = Math.ceil(h.sisaMin / tab);
+    var bMax = Math.ceil(h.sisaMax / tab);
+    bulanEl.textContent = (bMin === bMax) ? bMin + " bulan lagi" : bMin + "–" + bMax + " bulan lagi";
+
+    var d = new Date();
+    d.setMonth(d.getMonth() + bMax);
+    var nb = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+    tglEl.innerHTML = "Kalau konsisten " + rp(tab) + "/bulan, paling lambat selesai sekitar <b>" +
+                      nb[d.getMonth()] + " " + d.getFullYear() + "</b>. Kurang lebih " +
+                      rp(mid) + " lagi yang perlu dikumpulkan.";
+  }
+
+  /* ---------- TABUNGAN INPUT ---------- */
+  var tabIn = document.getElementById("tabungan");
+  tabIn.addEventListener("input", function(){
+    var v = parseNum(tabIn.value);
+    tabIn.value = v ? fmt.format(v) : "";
+    state.tabungan = v;
+    renderPlanner(hitung()); save();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll(".chip"), function(c){
+    c.addEventListener("click", function(){
+      state.tabungan = parseInt(c.getAttribute("data-amt"), 10);
+      tabIn.value = fmt.format(state.tabungan);
+      renderPlanner(hitung()); save();
+    });
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    if(!confirm("Hapus semua centang dan harga yang sudah diisi?")) return;
+    state.checked = {}; state.harga = {}; state.rem = {};
+    render(); save();
+  });
+
+  /* ---------- PERSISTENCE ---------- */
+  var LS = "pc-impian-v1";
+  function saveLocal(){
+    try{ localStorage.setItem(LS, JSON.stringify(state)); }catch(e){}
+  }
+  function loadLocal(){
+    try{
+      var raw = localStorage.getItem(LS);
+      if(raw){
+        var o = JSON.parse(raw);
+        if(o && typeof o === "object"){
+          state.checked = o.checked || {};
+          state.harga = o.harga || {};
+          state.rem = o.rem || {};
+          if(typeof o.tabungan === "number") state.tabungan = o.tabungan;
+        }
+      }
+    }catch(e){}
+  }
+
+  function save(){ saveLocal(); }
+
+  /* ---------- BAGI PROGRESS LEWAT LINK ---------- */
+  function encodeState(){
+    try{
+      return btoa(JSON.stringify({
+        c: state.checked, h: state.harga, r: state.rem, t: state.tabungan
+      })).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+    }catch(e){ return null; }
+  }
+  function decodeState(s){
+    try{
+      var b = s.replace(/-/g,"+").replace(/_/g,"/");
+      while(b.length % 4) b += "=";
+      var o = JSON.parse(atob(b));
+      if(!o || typeof o !== "object") return null;
+      return o;
+    }catch(e){ return null; }
+  }
+
+  function showShareMsg(txt, warna){
+    var m = document.getElementById("shareMsg");
+    m.textContent = txt;
+    m.style.color = warna || "var(--green)";
+    m.style.display = "block";
+    clearTimeout(m._t);
+    m._t = setTimeout(function(){ m.style.display = "none"; }, 5000);
+  }
+
+  document.getElementById("shareBtn").addEventListener("click", function(){
+    var code = encodeState();
+    if(!code){ showShareMsg("Gagal membuat link. Coba lagi ya.", "var(--warn)"); return; }
+    var link = location.origin + location.pathname + "#p=" + code;
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(link).then(function(){
+        showShareMsg("✓ Link tersalin! Tinggal kirim ke pasanganmu.");
+      }).catch(function(){
+        window.prompt("Salin link ini lalu kirim:", link);
+      });
+    } else {
+      window.prompt("Salin link ini lalu kirim:", link);
+    }
+  });
+
+  /* ---------- MUAT ---------- */
+  loadLocal();
+
+  // Kalau dibuka dari link progress yang dikirim orang lain
+  if(location.hash && location.hash.indexOf("#p=") === 0){
+    var incoming = decodeState(location.hash.slice(3));
+    if(incoming){
+      var adaLokal = Object.keys(state.checked).length > 0 || Object.keys(state.harga).length > 0;
+      var lanjut = !adaLokal || window.confirm(
+        "Link ini membawa progress terbaru. Pakai progress dari link dan timpa yang tersimpan di perangkat ini?"
+      );
+      if(lanjut){
+        state.checked = incoming.c || {};
+        state.harga = incoming.h || {};
+        state.rem = incoming.r || {};
+        if(typeof incoming.t === "number" && incoming.t > 0) state.tabungan = incoming.t;
+        saveLocal();
+      }
+    }
+    try{ history.replaceState(null, "", location.pathname); }catch(e){}
+  }
+
+  tabIn.value = fmt.format(state.tabungan);
+  render();
+})();
+</script>
+</body>
+</html>
