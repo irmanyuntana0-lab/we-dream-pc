@@ -317,7 +317,7 @@ section{margin-top:34px;}
       <div>
         <div class="eyebrow">Proyek Rakitan Berdua</div>
         <h1>PC Impian Kita Berdua</h1>
-        <p>Checklist, budget, dan rencana nabung buat rakitan Ryzen 5 5500 + RX 580. Centang tiap komponen yang udah kebeli — sisanya kehitung otomatis.</p>
+        <p>Checklist, budget, dan rencana nabung buat rakitan Ryzen 5 5500 + GTX 1660 Super. Centang tiap komponen yang udah kebeli — sisanya kehitung otomatis.</p>
       </div>
       <div class="ring-box">
         <div class="ring">
@@ -423,7 +423,7 @@ section{margin-top:34px;}
       </div>
       <div class="step">
         <div class="step-n">5</div>
-        <div><h4>GTX 1660S</h4>
+        <div><h4>GTX 1660 Super 6GB</h4>
         <p>Item paling mahal kedua. Kalau beli bekas, minta tes dulu di tempat — jangan mau yang "no tes no return".</p></div>
       </div>
       <div class="step">
@@ -445,7 +445,7 @@ section{margin-top:34px;}
         <ul>
           <li><b>Ryzen 5 5500 nggak punya iGPU.</b> Tanpa VGA terpasang, PC nyala tapi monitor gelap. Jadi GPU nggak bisa ditunda kalau mau tes rakitan.</li>
           <li><b>B450M butuh BIOS Ryzen 5000.</b> Cari box berlabel "Ryzen 5000 Ready" atau minta toko update-in.</li>
-          <li><b>RX 580 butuh daya 8-pin</b> (kadang 6+2 atau dua konektor). Pastikan PSU punya kabelnya, bukan cuma adaptor molex.</li>
+          <li><b>GTX 1660 Super butuh daya 8-pin</b> dari PSU. Pastikan PSU punya kabelnya, bukan cuma adaptor molex.</li>
           <li><b>RAM ambil kit 2x8GB</b>, bukan 1x16GB. Dual channel naikin FPS lumayan di GPU kelas ini.</li>
           <li><b>Cek slot M.2 NVMe</b> di mobonya — beberapa B450M murah slotnya cuma SATA M.2.</li>
         </ul>
@@ -453,9 +453,9 @@ section{margin-top:34px;}
       <div class="card">
         <h3><span class="em">🖥️</span>Soal Monitor Rp1,9 jt</h3>
         <ul>
-          <li>Di harga segitu incar <b>24" IPS, 1080p, 144–180Hz</b>. Itu titik paling pas buat RX 580.</li>
-          <li><b>Hindari 1440p</b> di budget ini — RX 580 bakal ngos-ngosan dan monitornya jadi mubazir.</li>
-          <li>Pastikan ada port <b>DisplayPort</b>. RX 580 keluar 144Hz paling enak lewat DP, bukan HDMI.</li>
+          <li>Di harga segitu incar <b>24" IPS, 1080p, 144–180Hz</b>. Itu titik paling pas buat GTX 1660 Super.</li>
+          <li><b>Hindari 1440p</b> di budget ini — GTX 1660 Super bakal ngos-ngosan dan monitornya jadi mubazir.</li>
+          <li>Pastikan ada port <b>DisplayPort</b>. GTX 1660 Super keluar 144Hz paling enak lewat DP, bukan HDMI.</li>
           <li>Panel <b>IPS</b> > VA > TN kalau kalian juga nonton atau ngedit, bukan cuma main game.</li>
           <li>Cek garansi resmi Indonesia dan kebijakan <b>dead pixel</b>-nya sebelum bayar.</li>
         </ul>
@@ -463,7 +463,7 @@ section{margin-top:34px;}
       <div class="card">
         <h3><span class="em g">💡</span>Cara Hemat</h3>
         <ul>
-          <li><b>RX 580 bekas</b> bisa dapat 1,2–1,5 jt. Tapi wajib tes render/game minimal 15 menit di tempat.</li>
+          <li><b>GTX 1660 Super bekas</b> bisa dapat 1,6–1,9 jt. Tapi wajib tes render/game minimal 15 menit di tempat.</li>
           <li><b>Cooler bawaan Ryzen 5 5500 udah cukup</b> — nggak perlu beli aftermarket dulu, hemat 200–400 rb.</li>
           <li><b>Thermal paste udah nempel</b> di cooler bawaan. Nggak usah beli terpisah.</li>
           <li>Pantau <b>Harbolnas / tanggal kembar</b> buat SSD, RAM, dan casing — diskonnya paling kerasa di situ.</li>
@@ -509,8 +509,8 @@ section{margin-top:34px;}
   var KOMPONEN = [
     {id:"cpu", nama:"Ryzen 5 5500", kat:"Prosesor", min:1700000, max:1700000, tag:"core", tagTxt:"Inti",
      tip:"6 core / 12 thread. Ingat: nggak ada grafis bawaan, jadi VGA wajib nemenin."},
-    {id:"gpu", nama:"RX 580 8GB", kat:"Kartu Grafis", min:1500000, max:2000000, tag:"core", tagTxt:"Inti",
-     tip:"VRAM 8GB bikin dia masih kuat di 1080p. Butuh konektor PSU 8-pin."},
+    {id:"gpu", nama:"GTX 1660 Super 6GB", kat:"Kartu Grafis", min:1900000, max:2300000, tag:"core", tagTxt:"Inti",
+     tip:"Kuat buat gaming 1080p high-settings, hemat daya, dan drivernya stabil buat game modern."},
     {id:"mobo", nama:"Motherboard B450M", kat:"Mainboard", min:900000, max:1100000, tag:"core", tagTxt:"Inti",
      tip:"Pastikan BIOS-nya sudah support Ryzen seri 5000 sebelum dibawa pulang."},
     {id:"ram", nama:"RAM 16GB DDR4 3200", kat:"Memori", min:750000, max:1000000, tag:"core", tagTxt:"Inti",
